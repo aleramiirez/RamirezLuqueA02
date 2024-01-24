@@ -1,14 +1,13 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:ramirezluquea02/Widget/btn_count.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  const MyApp({Key? key});
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -18,185 +17,92 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: Scaffold(
-          backgroundColor: Color.fromARGB(255, 53, 53, 52),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  "CONTADOR",
-                  style: TextStyle(
-                    fontFamily: 'PoppinsExtrabold',
-                    color: Colors.white,
-                    fontSize: 60.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  "0",
-                  style: TextStyle(
-                    fontFamily: 'PoppinsThin',
-                    color: Colors.white,
-                    fontSize: 200.0,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: Size(90.00, 30.0),
-                          backgroundColor: Colors.black,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ),
-                        ),
-                        child: Text(
-                          "-",
-                          style: TextStyle(
-                            fontFamily: 'PoppinsExtrabold',
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        )),
-                    ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: Size(90.00, 30.0),
-                          backgroundColor: Colors.black,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ),
-                        ),
-                        child: Text(
-                          "RESET",
-                          style: TextStyle(
-                            fontFamily: 'PoppinsExtrabold',
-                            fontSize: 10.0,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        )),
-                    ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: Size(90.00, 30.0),
-                          backgroundColor: Colors.black,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ),
-                        ),
-                        child: Text(
-                          "+",
-                          style: TextStyle(
-                            fontFamily: 'PoppinsExtrabold',
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        )),
-                  ],
-                ),
-                Text(
-                  "Bienvenido, nombre_usuario",
-                  style: TextStyle(
-                    fontFamily: 'PoppinsMedium',
-                    color: Color(0xFFACABAB),
-                    fontSize: 10.0,
-                  ),
-                )
-              ],
-            ),
-          ),
-        ));
+        home: CounterScreen());
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+class CounterScreen extends StatefulWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  CounterScreenState createState() => CounterScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class CounterScreenState extends State<CounterScreen> {
+  int count = 0;
 
-  void _incrementCounter() {
+  void incrementCount() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      count++;
+    });
+  }
+
+  void decrementCount() {
+    setState(() {
+      if (count > 0) {
+        count--;
+      }
+    });
+  }
+
+  void resetCount() {
+    setState(() {
+      count = 0;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
+      backgroundColor: const Color.fromARGB(255, 53, 53, 52),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              "CONTADOR",
+              style: GoogleFonts.poppins(
+                color: Colors.white,
+                fontSize: 60.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+              "${count}",
+              style: GoogleFonts.poppins(
+                color: const Color.fromARGB(255, 255, 255, 255),
+                fontSize: 200.0,
+                fontWeight: FontWeight.w100,
+              ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ButtonCount(
+                  text: '-',
+                  fontsize: 20.0,
+                  onPressed: decrementCount,
+                ),
+                ButtonCount(
+                  text: 'RESET',
+                  fontsize: 13.0,
+                  onPressed: resetCount,
+                ),
+                ButtonCount(
+                  text: '+',
+                  fontsize: 20.0,
+                  onPressed: incrementCount,
+                )
+              ],
+            ),
+            Text(
+              "Bienvenido, nombre_usuario",
+              style: GoogleFonts.poppins(
+                  color: const Color(0xFFACABAB),
+                  fontSize: 10.0,
+                  fontWeight: FontWeight.w500),
+            )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
