@@ -8,7 +8,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key});
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,6 +32,7 @@ class CounterScreenState extends State<CounterScreen> {
   void incrementCount() {
     setState(() {
       count++;
+      debugPrint("Count: $count");
     });
   }
 
@@ -39,6 +40,7 @@ class CounterScreenState extends State<CounterScreen> {
     setState(() {
       if (count > 0) {
         count--;
+        debugPrint("Count: $count");
       }
     });
   }
@@ -46,6 +48,7 @@ class CounterScreenState extends State<CounterScreen> {
   void resetCount() {
     setState(() {
       count = 0;
+      debugPrint("Count: $count");
     });
   }
 
